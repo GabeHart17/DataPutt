@@ -32,13 +32,15 @@ public abstract class PuttingModel {
     public abstract int getNextStation();
 
     public void makePutt() {
-        puttsAttempted++;
-        puttsMade++;
         if (calibrationMode) calibrationPutts++;
+        else {
+            puttsAttempted++;
+            puttsMade++;
+        }
     }
     public void missPutt() {
-        puttsAttempted++;
         if (calibrationMode) calibrationPutts++;
+        else puttsAttempted++;
     }
 
     public abstract double probability(double meters);

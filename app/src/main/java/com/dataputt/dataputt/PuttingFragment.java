@@ -15,6 +15,8 @@ import com.dataputt.model.NormalDistributionPuttingModel;
 import com.dataputt.model.PuttingModel;
 import com.dataputt.model.Units;
 
+import java.util.Objects;
+
 public class PuttingFragment extends Fragment {
 
     private FragmentPuttingBinding binding;
@@ -26,7 +28,8 @@ public class PuttingFragment extends Fragment {
 //        for (int i = 0; i < 10; i++) inits[i] = 0.5;
 //        puttingModel = new LinearInterpolationPuttingModel(
 //                Units.feetToMeters(3), Units.feetToMeters(12), 0.75, inits, 0.1, 0.15);
-        puttingModel = new NormalDistributionPuttingModel(Units.feetToMeters(3), Units.feetToMeters(12), 0.75, 10, 0.15, 100);
+        puttingModel = new NormalDistributionPuttingModel(Units.feetToMeters(3), Units.feetToMeters(12), 0.75, 10, 0.15, 50);
+//        puttingModel = ((MainActivity) Objects.requireNonNull(getActivity())).getPuttingModel();
     }
 
     private void updateStationInfo() {
@@ -34,9 +37,14 @@ public class PuttingFragment extends Fragment {
         binding.stationText.setText(Integer.valueOf(nextStation).toString());
         String[] ftNumber = Double.valueOf(puttingModel.units.stationsToFeet(nextStation)).toString().split("\\.");
         binding.stationDistanceText.setText(ftNumber[0] + "." + ftNumber[1].substring(0, Math.min(ftNumber[1].length(), 2)) + " ft");
-        binding.puttCounterText.setText("putts made/attempted: " +
-                Integer.valueOf(puttingModel.getPuttsMade()).toString() +
-                " / " + Integer.valueOf(puttingModel.getPuttsAttempted()).toString());
+        if (puttingModel.getCalibrationMode())  {
+            binding.puttCounterText.setText("calibration putts: " + Integer.valueOf(puttingModel.getCalibrationPutts()).toString());
+        }
+        else {
+            binding.puttCounterText.setText("putts made/attempted: " +
+                    Integer.valueOf(puttingModel.getPuttsMade()).toString() +
+                    " / " + Integer.valueOf(puttingModel.getPuttsAttempted()).toString());
+        }
     }
 
     @Override
