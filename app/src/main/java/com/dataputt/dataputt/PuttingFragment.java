@@ -11,12 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dataputt.dataputt.databinding.FragmentPuttingBinding;
-import com.dataputt.model.LinearInterpolationPuttingModel;
-import com.dataputt.model.NormalDistributionPuttingModel;
 import com.dataputt.model.PuttingModel;
-import com.dataputt.model.Units;
-
-import java.util.Objects;
+import com.dataputt.model.StatisticalPuttingModel;
 
 public class PuttingFragment extends Fragment {
 
@@ -30,7 +26,7 @@ public class PuttingFragment extends Fragment {
     private void updateStationInfo() {
         int nextStation = puttingModel.getNextStation();
         binding.stationText.setText(Integer.valueOf(nextStation).toString());
-        String[] ftNumber = Double.valueOf(puttingModel.units.stationsToFeet(nextStation)).toString().split("\\.");
+        String[] ftNumber = Double.valueOf(puttingModel.getUnits().stationsToFeet(nextStation)).toString().split("\\.");
         binding.stationDistanceText.setText(ftNumber[0] + "." + ftNumber[1].substring(0, Math.min(ftNumber[1].length(), 2)) + " ft");
         if (puttingModel.getCalibrationMode())  {
             binding.puttCounterText.setText("calibration putts: " + Integer.valueOf(puttingModel.getCalibrationPutts()).toString());

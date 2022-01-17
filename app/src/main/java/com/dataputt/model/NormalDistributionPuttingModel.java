@@ -21,7 +21,7 @@ import org.apache.commons.math3.special.Erf;
 import org.apache.commons.math3.distribution.NormalDistribution;
 
 
-public class NormalDistributionPuttingModel extends PuttingModel {
+public class NormalDistributionPuttingModel extends StatisticalPuttingModel {
     private final double freqStdev;
     private final Random rng = new Random();
     private final NormalDistribution freqDist;
@@ -37,7 +37,7 @@ public class NormalDistributionPuttingModel extends PuttingModel {
         this.calibrationPuttsNeeded = calibrationPutts;
         for (int i = 0; i < numStations; i++) {
             stations.add(new PuttingStation(i+1,
-                    this.units.stationsToMeters(i+1), 100));
+                    this.getUnits().stationsToMeters(i+1), 100));
         }
         nextStation = stations.get(0);
     }
