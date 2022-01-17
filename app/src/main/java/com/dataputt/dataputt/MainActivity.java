@@ -17,11 +17,11 @@ import com.dataputt.model.Units;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-//    private PuttingModel puttingModel;
-//
-//    public PuttingModel getPuttingModel() {
-//        return puttingModel;
-//    }
+    private PuttingModel puttingModel = new NormalDistributionPuttingModel(Units.feetToMeters(3), Units.feetToMeters(12), 0.75, 10, 0.15, 50);
+
+    public PuttingModel getPuttingModel() {
+        return puttingModel;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        puttingModel = new NormalDistributionPuttingModel(Units.feetToMeters(3), Units.feetToMeters(12), 0.75, 10, 0.15, 50);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.dataputt.dataputt;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,12 +25,6 @@ public class PuttingFragment extends Fragment {
 
     public PuttingFragment() {
         super(R.layout.fragment_putting);
-//        double[] inits = new double[10];
-//        for (int i = 0; i < 10; i++) inits[i] = 0.5;
-//        puttingModel = new LinearInterpolationPuttingModel(
-//                Units.feetToMeters(3), Units.feetToMeters(12), 0.75, inits, 0.1, 0.15);
-        puttingModel = new NormalDistributionPuttingModel(Units.feetToMeters(3), Units.feetToMeters(12), 0.75, 10, 0.15, 50);
-//        puttingModel = ((MainActivity) Objects.requireNonNull(getActivity())).getPuttingModel();
     }
 
     private void updateStationInfo() {
@@ -50,6 +45,14 @@ public class PuttingFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof MainActivity) {
+            puttingModel = ((MainActivity) context).getPuttingModel();
+        }
     }
 
     @Override
