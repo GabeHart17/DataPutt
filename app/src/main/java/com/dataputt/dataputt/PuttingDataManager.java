@@ -2,6 +2,8 @@ package com.dataputt.dataputt;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -20,7 +22,7 @@ public class PuttingDataManager {
     private StatisticalPuttingModel puttingModel;
     private Context context;
 
-    public PuttingDataManager(Context context) {
+    public PuttingDataManager(@NonNull Context context) {
         this.context = context;
         Context c = context.getApplicationContext();
         Object obj = null;
