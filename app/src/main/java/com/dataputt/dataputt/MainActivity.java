@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.dataputt.dataputt.databinding.ActivityMainBinding;
+import com.dataputt.model.PuttingModel;
 import com.dataputt.model.StatisticalPuttingModel;
 import com.dataputt.model.NormalDistributionPuttingModel;
 import com.dataputt.model.Units;
@@ -17,10 +18,11 @@ import com.dataputt.model.Units;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private StatisticalPuttingModel puttingModel = new NormalDistributionPuttingModel(Units.feetToMeters(3), Units.feetToMeters(12), 0.75, 10, 0.15, 50);
+//    private StatisticalPuttingModel puttingModel = new NormalDistributionPuttingModel(Units.feetToMeters(3), Units.feetToMeters(12), 0.75, 10, 0.15, 50);
+    private PuttingDataManager dataManager = new PuttingDataManager(this);
 
-    public StatisticalPuttingModel getPuttingModel() {
-        return puttingModel;
+    public PuttingModel getPuttingModel() {
+        return dataManager.getPuttingModel();
     }
 
     @Override

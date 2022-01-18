@@ -1,6 +1,8 @@
 package com.dataputt.model;
 
-public abstract class StatisticalPuttingModel implements PuttingModel {
+import java.io.Serializable;
+
+public abstract class StatisticalPuttingModel implements PuttingModel, Serializable {
     protected final double stationSeparation;
     protected final double station1;
     private final Units units;
