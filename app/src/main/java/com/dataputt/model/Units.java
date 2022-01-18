@@ -1,6 +1,8 @@
 package com.dataputt.model;
 
-public class Units {
+import java.io.Serializable;
+
+public class Units implements Serializable {
     private static final double feetPerMeter = 3.280839895;
     private final double metersPerStation;
     private final double station1;

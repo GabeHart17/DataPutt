@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 //    private StatisticalPuttingModel puttingModel = new NormalDistributionPuttingModel(Units.feetToMeters(3), Units.feetToMeters(12), 0.75, 10, 0.15, 50);
-    private PuttingDataManager dataManager = new PuttingDataManager(this);
+    private PuttingDataManager dataManager;
 
     public PuttingModel getPuttingModel() {
         return dataManager.getPuttingModel();
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dataManager = new PuttingDataManager(this);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -66,5 +67,11 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        dataManager.sync();
     }
 }

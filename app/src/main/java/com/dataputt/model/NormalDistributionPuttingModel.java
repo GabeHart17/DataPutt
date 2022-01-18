@@ -13,6 +13,7 @@
 
 package com.dataputt.model;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.Random;
@@ -103,7 +104,7 @@ public class NormalDistributionPuttingModel extends StatisticalPuttingModel {
         return Erf.erf(ec / meters);
     }
 
-    private static class PuttingStation {
+    private static class PuttingStation implements Serializable {
         private final int stationNumber;
         private final double distance;
         private final int maxPutts;

@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import com.dataputt.model.NormalDistributionPuttingModel;
@@ -21,18 +22,37 @@ public class PuttingDataManager {
 
     public PuttingDataManager(Context context) {
         this.context = context;
-        this.puttingModel = new NormalDistributionPuttingModel(Units.feetToMeters(3), Units.feetToMeters(12), 0.75, 10, 0.15, 50);
+        Context c = context.getApplicationContext();
+        Object obj = null;
+        try (ObjectInputStream is = new ObjectInputStream(context.openFileInput(SAVE_FILE_NAME))) {
+            obj = is.readObject();
+        } catch (FileNotFoundException e) {
+            obj = null;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (obj != null && obj instanceof StatisticalPuttingModel) {
+            this.puttingModel = (StatisticalPuttingModel) obj;
+        } else {
+            this.puttingModel = new NormalDistributionPuttingModel(
+                    Units.feetToMeters(3), Units.feetToMeters(12), 0.75, 10, 0.15, 50);
+        }
     }
 
     public PuttingModel getPuttingModel() {
         return new PuttingModelWrapper();
     }
 
-    private void sync() {
+    public void sync() {
         try (ObjectOutputStream os = new ObjectOutputStream(context.openFileOutput(SAVE_FILE_NAME, context.MODE_PRIVATE))) {
             os.writeObject(puttingModel);
-        } catch (IOException ex) {
-            ex.printStackTrace();
+            os.flush();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
