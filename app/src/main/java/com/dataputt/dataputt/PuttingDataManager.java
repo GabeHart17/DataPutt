@@ -39,7 +39,7 @@ public class PuttingDataManager {
             this.puttingModel = (StatisticalPuttingModel) obj;
         } else {
             this.puttingModel = new NormalDistributionPuttingModel(
-                    Units.feetToMeters(3), Units.feetToMeters(12), 0.75, 10, 0.15, 50);
+                    Units.feetToMeters(3), Units.feetToMeters(12), 10, 0.75, 0.15, 50);
         }
     }
 
@@ -99,6 +99,10 @@ public class PuttingDataManager {
 
         public Units getUnits() {
             return puttingModel.getUnits();
+        }
+
+        public int getNumStations() {
+            return puttingModel.getNumStations();
         }
     }
 }

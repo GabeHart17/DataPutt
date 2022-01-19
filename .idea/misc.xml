@@ -6,7 +6,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_putting.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.32608695652173914" />
-        <entry key="app/src/main/res/layout/fragment_stats.xml" value="0.32608695652173914" />
+        <entry key="app/src/main/res/layout/fragment_stats.xml" value="0.25" />
         <entry key="app/src/main/res/layout/main_menu.xml" value="0.32608695652173914" />
       </map>
     </option>

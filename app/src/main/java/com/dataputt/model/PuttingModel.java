@@ -11,4 +11,5 @@ public interface PuttingModel {
     public int getPuttsAttempted();
     public int getPuttsMade();
     public Units getUnits();
+    public int getNumStations();
 }

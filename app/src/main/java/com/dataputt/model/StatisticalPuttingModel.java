@@ -5,18 +5,20 @@ import java.io.Serializable;
 public abstract class StatisticalPuttingModel implements PuttingModel, Serializable {
     protected final double stationSeparation;
     protected final double station1;
-    private final Units units;
+    protected final Units units;
+    protected final int numStations;
     protected final double targetFreq;
     protected int puttsAttempted = 0;
     protected int puttsMade = 0;
     protected boolean calibrationMode = true;
     protected int calibrationPutts = 0;
 
-    public StatisticalPuttingModel(double stationSeparation, double station1, double targetFreq) {
+    public StatisticalPuttingModel(double stationSeparation, double station1, int numStations, double targetFreq) {
         this.stationSeparation = stationSeparation;
         this.station1 = station1;
         this.units = new Units(stationSeparation, station1);
         this.targetFreq = targetFreq;
+        this.numStations = numStations;
     }
 
     public void setCalibrationMode(boolean enabled) {
@@ -57,5 +59,9 @@ public abstract class StatisticalPuttingModel implements PuttingModel, Serializa
 
     public Units getUnits() {
         return units;
+    }
+
+    public int getNumStations() {
+        return numStations;
     }
 }

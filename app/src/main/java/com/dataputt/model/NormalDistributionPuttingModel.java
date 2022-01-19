@@ -30,9 +30,9 @@ public class NormalDistributionPuttingModel extends StatisticalPuttingModel {
     private final int calibrationPuttsNeeded;
     private PuttingStation nextStation;
 
-    public NormalDistributionPuttingModel(double stationSeparation, double station1, double targetFreq,
-                                          int numStations, double freqStdev, int calibrationPutts) {
-        super(stationSeparation, station1, targetFreq);
+    public NormalDistributionPuttingModel(double stationSeparation, double station1, int numStations,
+                                          double targetFreq, double freqStdev, int calibrationPutts) {
+        super(stationSeparation, station1, numStations, targetFreq);
         this.freqStdev = freqStdev;
         this.freqDist = new NormalDistribution(targetFreq, freqStdev);
         this.calibrationPuttsNeeded = calibrationPutts;
